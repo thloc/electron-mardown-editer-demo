@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
-
+import React, { useCallback, useState } from 'react';
+import Editor from './editor';
 import './app.css';
 
 const App: React.FC = () => {
-  const [count, setCount] = useState(0);
+  const [doc, setDoc] = useState<string>('# Hello, World!\n');
+
+  const handleDocChange = useCallback(newDoc => {
+    setDoc(newDoc)
+  }, []);
 
   return (
     <div className='app'>
-      <header className='app-header'>
-        Hello World!
-
-        <p>
-          <button onClick={() => setCount((count: number) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-      </header>
+      <Editor onChange={handleDocChange} initialDoc={doc}/>
     </div>
   );
 };
