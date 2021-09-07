@@ -16,7 +16,7 @@ const Editor: React.FC<Props> = (props) => {
   )
   const [refContainer, editorView] = useCodeMirror<HTMLDivElement>({
     initalDoc: initialDoc,
-    onChange: () => handleChange
+    onChange: handleChange
   });
 
   useEffect(() => {
